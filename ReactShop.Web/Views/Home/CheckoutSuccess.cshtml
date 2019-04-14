@@ -1,0 +1,18 @@
+﻿@using System.Web.Optimization
+@using System.Collections.Generic
+@model ReactShop.Core.DTOs.CheckoutSummaryDTO
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "ReactShop";
+}
+
+@Html.React("CheckoutSuccessView", new
+{
+    title = "React JS.Net + React-Bootstrap",
+    model = Model
+})
+
+@Scripts.Render(" ~/bundles/js")

@@ -1,0 +1,32 @@
+﻿@using System.Web.Optimization
+@using System.Collections.Generic
+@model ReactShop.Core.DTOs.CartDTO
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "ReactShop";
+}
+
+@functions{
+    public string TokenHeaderValue()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + ":" + formToken;
+    }
+}
+
+@Html.React("CartView", new
+{
+    title = "React JS.Net + React-Bootstrap",
+    model = Model,
+    TokenHeaderValue = TokenHeaderValue(),
+    urlNewProduct = @Url.Action("Index", "Home" ),
+    urlCheckoutSuccess = @Url.Action("CheckoutSuccess", "Home")
+})
+
+@Scripts.Render(" ~/bundles/js")
+
+@Html.ReactInitJavaScript()
